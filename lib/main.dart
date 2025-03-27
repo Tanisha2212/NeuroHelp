@@ -6,6 +6,19 @@ import 'package:gamification_maybe/sign_up.dart';
 import 'login_page.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  if(kIsWeb) {
+    await Firebase.initializeApp(options: FirebaseOptions(
+        apiKey: "AIzaSyBmov2B2LvwpfSxc5eXXRB1bym0Z_FmS1k",
+        authDomain: "neurohelp-817ab.firebaseapp.com",
+        projectId: "neurohelp-817ab",
+        storageBucket: "neurohelp-817ab.firebasestorage.app",
+        messagingSenderId: "491549634671",
+        appId: "1:491549634671:web:7d361142f3080536f0dd9a"));
+  }else {
+    await Firebase.initializeApp();
+  }
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(NeurodiverseSupportApp());
