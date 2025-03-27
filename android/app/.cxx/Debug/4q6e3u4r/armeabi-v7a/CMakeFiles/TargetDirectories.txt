@@ -1,0 +1,2 @@
+D:/projects/google_hackathon/android/app/.cxx/Debug/4q6e3u4r/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/projects/google_hackathon/android/app/.cxx/Debug/4q6e3u4r/armeabi-v7a/CMakeFiles/rebuild_cache.dir
