@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'community_support.dart';
+import 'job_listing.dart';
 
 class EmploymentHomePage extends StatelessWidget {
   const EmploymentHomePage({super.key});
@@ -44,7 +45,7 @@ class EmploymentHomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => EmploymentHomePage()),
+                        MaterialPageRoute(builder: (context) => JobListingsPage()),
                       );
                     },
                   ),

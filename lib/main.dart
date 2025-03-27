@@ -5,7 +5,6 @@ import 'package:gamification_maybe/employment/employment_home.dart';
 import 'package:gamification_maybe/sign_up.dart';
 import 'login_page.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -19,18 +18,17 @@ class NeurodiverseSupportApp extends StatelessWidget {
       title: 'Neurodiverse Support',
       theme: ThemeData(
         primarySwatch: Colors.teal,
-        fontFamily: 'OpenDyslexic',
+        fontFamily: 'OpenDyslexic',  // Set OpenDyslexic as the default font
         textTheme: TextTheme(
-          bodyLarge: TextStyle(fontSize: 16),
-          bodyMedium: TextStyle(fontSize: 14),
-          titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(fontSize: 16, fontFamily: 'OpenDyslexic'),
+          bodyMedium: TextStyle(fontSize: 14, fontFamily: 'OpenDyslexic'),
+          titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'OpenDyslexic'),
         ),
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.teal,
           foregroundColor: Colors.white,
         ),
       ),
-      // Start with AuthGateway instead of HomePage
       home: AuthGateway(),
       routes: {
         '/login': (context) => LoginPage(),
@@ -51,12 +49,7 @@ class AuthGateway extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo or app name
-              Icon(
-                Icons.psychology,
-                size: 80,
-                color: Colors.teal,
-              ),
+              Icon(Icons.psychology, size: 80, color: Colors.teal),
               SizedBox(height: 16),
               Text(
                 'Neurodiverse Support',
@@ -64,6 +57,7 @@ class AuthGateway extends StatelessWidget {
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.teal,
+                  fontFamily: 'OpenDyslexic',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -73,11 +67,12 @@ class AuthGateway extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[600],
+                  fontFamily: 'OpenDyslexic',
                 ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 60),
-              
+
               // Login button
               ElevatedButton(
                 onPressed: () {
@@ -96,11 +91,12 @@ class AuthGateway extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'OpenDyslexic',
                   ),
                 ),
               ),
               SizedBox(height: 16),
-              
+
               // Signup button
               OutlinedButton(
                 onPressed: () {
@@ -120,15 +116,15 @@ class AuthGateway extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.teal,
+                    fontFamily: 'OpenDyslexic',
                   ),
                 ),
               ),
               SizedBox(height: 30),
-              
+
               // Skip for now option
               TextButton(
                 onPressed: () {
-                  // Skip authentication and go directly to home page
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => HomePage()),
@@ -139,6 +135,7 @@ class AuthGateway extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 16,
+                    fontFamily: 'OpenDyslexic',
                   ),
                 ),
               ),
@@ -150,119 +147,7 @@ class AuthGateway extends StatelessWidget {
   }
 }
 
-// Your existing HomePage class
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Neurodiverse Support'),
-        centerTitle: true,
-        actions: [
-          // Add profile icon in app bar
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {
-              // Show profile options
-              _showProfileOptions(context);
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to Neurodiverse Support',
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 30),
-            FeatureCard(
-              title: 'Education',
-              description: 'Personalized learning and assistive technologies',
-              icon: Icons.school,
-              color: Colors.blue.shade700,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EducationHomePage()),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-            FeatureCard(
-              title: 'Employment',
-              description: 'Job matching and workplace readiness',
-              icon: Icons.work,
-              color: Colors.purple.shade700,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EmploymentHomePage()),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-            SettingsButton(),
-          ],
-        ),
-      ),
-    );
-  }
 
-  void _showProfileOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('View Profile'),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to profile page
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Account Settings'),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Navigate to settings page
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Log Out'),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Log out and return to auth gateway
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => AuthGateway()),
-                    (route) => false,
-                  );
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-// Your existing FeatureCard class
 class FeatureCard extends StatelessWidget {
   final String title;
   final String description;
@@ -321,70 +206,106 @@ class FeatureCard extends StatelessWidget {
   }
 }
 
-// Your existing SettingsButton class
-class SettingsButton extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      icon: Icon(Icons.settings),
-      label: Text('Accessibility Settings'),
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AccessibilitySettingsDialog();
-          },
-        );
-      },
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Neurodiverse Support', style: TextStyle(fontFamily: 'OpenDyslexic')),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              _showProfileOptions(context);
+            },
+          ),
+        ],
       ),
-    );
-  }
-}
-
-// Your existing AccessibilitySettingsDialog class
-class AccessibilitySettingsDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Accessibility Settings'),
-      content: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildSettingTile('Text-to-Speech', Icons.record_voice_over),
-            _buildSettingTile('Speech-to-Text', Icons.mic),
-            _buildSettingTile('Distraction-Free Mode', Icons.visibility),
-            _buildSettingTile('High Contrast', Icons.contrast),
-            _buildSettingTile('Font Size', Icons.format_size),
+            Text(
+              'Welcome to Neurodiverse Support',
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 30),
+            FeatureCard(
+              title: 'Education',
+              description: 'Personalized learning and assistive technologies',
+              icon: Icons.school,
+              color: Colors.blue.shade700,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EducationHomePage()),
+                );
+              },
+            ),
+            SizedBox(height: 20),
+            FeatureCard(
+              title: 'Employment',
+              description: 'Job matching and workplace readiness',
+              icon: Icons.work,
+              color: Colors.purple.shade700,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmploymentHomePage()),
+                );
+              },
+            ),
           ],
         ),
       ),
-      actions: [
-        TextButton(
-          child: Text('Close'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
     );
   }
 
-  Widget _buildSettingTile(String title, IconData icon) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          Icon(icon),
-          SizedBox(width: 10),
-          Text(title),
-          Spacer(),
-          Switch(value: false, onChanged: (value) {}),
-        ],
+  void _showProfileOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('View Profile', style: TextStyle(fontFamily: 'OpenDyslexic')),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Account Settings', style: TextStyle(fontFamily: 'OpenDyslexic')),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Log Out', style: TextStyle(fontFamily: 'OpenDyslexic')),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => AuthGateway()),
+                    (route) => false,
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

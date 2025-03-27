@@ -60,6 +60,38 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/ADHD.png
+    - assets/AUTISM.png
+    - assets/DYSLEXIS.png
+
+  fonts:
+    - family: OpenDyslexicAlta
+      fonts:
+        - asset: assets/fonts/OpenDyslexicAlta-Regular.otf
+        - asset: assets/fonts/OpenDyslexicAlta-Bold.otf
+          weight: 700
+        - asset: assets/fonts/OpenDyslexicAlta-Italic.otf
+          style: italic
+        - asset: assets/fonts/OpenDyslexicAlta-BoldItalic.otf
+          weight: 700
+          style: italic
+
+    - family: OpenDyslexic
+      fonts:
+        - asset: assets/fonts/OpenDyslexic-Regular.otf
+        - asset: assets/fonts/OpenDyslexic-Bold.otf
+          weight: 700
+        - asset: assets/fonts/OpenDyslexic-Italic.otf
+          style: italic
+        - asset: assets/fonts/OpenDyslexic-BoldItalic.otf
+          weight: 700
+          style: italic
+
+    - family: OpenDyslexicMono
+      fonts:
+        - asset: assets/fonts/OpenDyslexicMono-Regular.otf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
